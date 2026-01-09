@@ -48,11 +48,17 @@ void loop() {
   lcd.print(eye ? "CLOSED " : "OPEN   ");
 
   // RELAY CONDITION (ANY ONE OR BOTH)
-  if (alcohol || eye) {
+  if (eye) {
+    delay(1000);
     digitalWrite(RELAY_PIN, LOW);   // Relay ON
     lcd.setCursor(11,1);
     lcd.print("ALERT");
-  } else {
+  } 
+  else if(alcohol) {
+    digitalWrite(RELAY_PIN, LOW);   // Relay ON
+    lcd.setCursor(11,1);
+    lcd.print("ALERT");
+  }else {
     digitalWrite(RELAY_PIN, HIGH);  // Relay OFF
     lcd.setCursor(11,1);
     lcd.print("SAFE ");
